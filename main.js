@@ -56,7 +56,7 @@ const mediumMenuItem = new MenuItem({
 const smallMenuItem = new MenuItem({
   label: 'Small sharkie',
   click: () => {
-    resizeWindow(50);
+    resizeWindow(80);
   }
 })
 
@@ -66,15 +66,15 @@ menu.append(mediumMenuItem)
 menu.append(smallMenuItem)
 
 
-setTimeout(()=>{
-  menu.popup(win)
-  console.log("coso");
-
-},300)
-
 function resizeWindow(size) {
   win.setResizable(true);
   win.setSize(size, size);
   win.setResizable(false);
 }
 
+const ipc = require('electron').ipcMain
+
+ipc.on('right-click', () => {
+  menu.popup(win)
+  console.log("coso");
+})

@@ -23,5 +23,7 @@ document.onkeyup = () => {
 
 }
 
+const ipc = require('electron').ipcRenderer;
 
-const remote = require('electron').remote
+document.oncontextmenu = () => ipc.send('right-click');
+
