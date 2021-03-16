@@ -18,5 +18,8 @@
   "homepage": "https://github.com/LogicWrite/sharkie-meter#readme",
   "devDependencies": {
     "electron": "^11.2.0"
+  },
+  "dependencies": {
+    "electron-window-state": "^5.0.3"
   }
 }
