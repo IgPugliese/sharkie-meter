@@ -20,7 +20,6 @@ body{
 }
 
 img{
-  -webkit-user-select: none;
   -webkit-app-region: no-drag;
   background-color: violet;
 }
@@ -28,6 +27,6 @@ img{
 
 .sharkie{
   width: auto;
-  max-height: 15em;
+  max-height: 100vh;
   display: flex;
 }

@@ -9,10 +9,12 @@ function createWindow () {
     resizable:false,
     transparent:true,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      enableRemoteModule: true,
+
     }
   })
-
+  //win.webContents.openDevTools()
   win.loadFile('index.html')
   win.setMenu(null);
   win.setSkipTaskbar(true);
@@ -27,16 +29,52 @@ app.on('window-all-closed', () => {
   }
 })
 
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
+app.on('ready', function () {
+  createWindow()
+});
 
+
+const Menu = require('electron').Menu
+const MenuItem = require('electron').MenuItem
+
+
+const menu = new Menu()
+const bigMenuItem = new MenuItem({
+  label: 'Big sharkie',
+  click: () => {
+    resizeWindow(240);
+  }
+})
+
+const mediumMenuItem = new MenuItem({
+  label: 'Medium sharkie',
+  click: () => {
+    resizeWindow(140);
+  }
+})
+
+const smallMenuItem = new MenuItem({
+  label: 'Small sharkie',
+  click: () => {
+    resizeWindow(50);
   }
 })
 
 
-app.on('ready', function () {
-  setTimeout(function() {
-      createWindow();
-  },300);
-});
+menu.append(bigMenuItem)
+menu.append(mediumMenuItem)
+menu.append(smallMenuItem)
+
+
+setTimeout(()=>{
+  menu.popup(win)
+  console.log("coso");
+
+},300)
+
+function resizeWindow(size) {
+  win.setResizable(true);
+  win.setSize(size, size);
+  win.setResizable(false);
+}
 

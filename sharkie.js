@@ -22,3 +22,6 @@ document.onkeyup = () => {
   sharkieIdle.classList.remove("draggable");
 
 }
+
+
+const remote = require('electron').remote

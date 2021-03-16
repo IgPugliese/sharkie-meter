@@ -23,14 +23,13 @@ body {
 }
 
 img {
-  -webkit-user-select: none;
   -webkit-app-region: no-drag;
   background-color: violet;
 }
 
 .sharkie {
   width: auto;
-  max-height: 15em;
+  max-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
