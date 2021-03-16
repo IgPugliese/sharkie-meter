@@ -7,7 +7,7 @@ const AutoLaunch = require('auto-launch');
 
 
 let win = null;
-
+app.disableHardwareAcceleration();
 function createWindow () {
 
   let mainWindowState = windowStateKeeper({

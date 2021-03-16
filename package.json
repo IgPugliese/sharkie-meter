@@ -4,7 +4,11 @@
   "description": "Html visualizer",
   "main": "main.js",
   "scripts": {
-    "start": "electron . --enable-transparent-visuals --disable-gpu"
+    "start": "electron . --enable-transparent-visuals",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "sharkie-meter"
   },
   "repository": {
     "type": "git",
@@ -17,7 +21,8 @@
   },
   "homepage": "https://github.com/LogicWrite/sharkie-meter#readme",
   "devDependencies": {
-    "electron": "^11.2.0"
+    "electron": "^11.2.0",
+    "electron-builder": "^22.10.5"
   },
   "dependencies": {
     "auto-launch": "^5.0.5",
