@@ -3,6 +3,8 @@ const ipc = require('electron').ipcMain
 const Menu = require('electron').Menu
 const MenuItem = require('electron').MenuItem
 const windowStateKeeper = require('electron-window-state');
+const AutoLaunch = require('auto-launch');
+
 
 let win = null;
 
@@ -46,7 +48,7 @@ app.on('ready', function () {
 });
 
 
-const menu = new Menu()
+let menu = new Menu()
 const bigMenuItem = new MenuItem({
   label: 'Big sharkie',
   click: () => {
@@ -75,10 +77,57 @@ const close = new MenuItem({
   }
 })
 
-menu.append(bigMenuItem)
-menu.append(mediumMenuItem)
-menu.append(smallMenuItem)
-menu.append(close)
+const autoLauncher = new AutoLaunch({
+  name: "sharkie"
+});
+
+const disableAutolaunchLabel = "I'm awfull and i dont want to se sharkie again"
+const endableAutolaunchLabel = "I really love sharkie and I want it on my pc every time it starts"
+
+const autolaunchMenuItem = (isEnabled) => new MenuItem({
+  label: isEnabled? disableAutolaunchLabel : endableAutolaunchLabel,
+  role:'autolaunch',
+  click: () => {
+    if(isEnabled){
+      autoLauncher.disable()
+    }else{
+      autoLauncher.enable();
+    }
+    updateAutolaunchMenuOptionTo(!isEnabled)
+  }
+})
+
+populateMenuWithEverithingButTheAutolaunch(menu);
+addAutolaunchMenuOptionCheckingSystem();
+
+ipc.on('right-click', () => {
+  menu.popup(win)
+})
+
+function populateMenuWithEverithingButTheAutolaunch(menu){
+  menu.append(bigMenuItem);
+  menu.append(mediumMenuItem);
+  menu.append(smallMenuItem);
+  menu.append(close);
+}
+
+function addAutolaunchMenuOptionCheckingSystem(){
+  autoLauncher.isEnabled().then((isEnabled)=>{
+    addAutolaunchMenuOption(isEnabled)
+  })
+}
+
+function addAutolaunchMenuOption(isEnabled){
+  const autolaunchItem = autolaunchMenuItem(isEnabled)
+  menu.append(autolaunchItem)
+}
+
+//since electron menu is not dinamic the menu is fully regenerated
+function updateAutolaunchMenuOptionTo(isEndabled){
+  menu = new Menu()
+  populateMenuWithEverithingButTheAutolaunch(menu)
+  addAutolaunchMenuOption(isEndabled)
+}
 
 function resizeWindow(size) {
   win.setResizable(true);
@@ -86,7 +135,4 @@ function resizeWindow(size) {
   win.setResizable(false);
 }
 
-ipc.on('right-click', () => {
-  menu.popup(win)
-  console.log("coso");
-})
+
