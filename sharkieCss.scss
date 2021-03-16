@@ -6,8 +6,6 @@ html{
 
 body{
   margin: 0;
-  background-color: red;
-
 }
 
 .draggable{
@@ -15,13 +13,11 @@ body{
   height: 100%;
   -webkit-user-select: none;
   -webkit-app-region: drag !important;
-  background-color:gainsboro;
 
 }
 
 img{
   -webkit-app-region: no-drag;
-  background-color: violet;
 }
 
 

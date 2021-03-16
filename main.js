@@ -44,7 +44,7 @@ app.on('window-all-closed', () => {
 })
 
 app.on('ready', function () {
-  createWindow()
+  setTimeout(createWindow,300)
 });
 
 
