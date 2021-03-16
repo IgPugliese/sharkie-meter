@@ -1,0 +1,22 @@
+{
+  "name": "sharke-meter",
+  "version": "0.0.1",
+  "description": "Html visualizer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron . --enable-transparent-visuals --disable-gpu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LogicWrite/sharkie-meter.git"
+  },
+  "author": "Ignacio Pugliese",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LogicWrite/sharkie-meter/issues"
+  },
+  "homepage": "https://github.com/LogicWrite/sharkie-meter#readme",
+  "devDependencies": {
+    "electron": "^11.2.0"
+  }
+}
