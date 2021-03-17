@@ -7,6 +7,19 @@ const AutoLaunch = require('auto-launch');
 
 
 let win = null;
+let  autolaunchConfig = {
+  name: "sharke-meter"
+}
+
+if(process.env.APPIMAGE){
+  autolaunchConfig = {...autolaunchConfig, path:process.env.APPIMAGE}
+}
+const autoLauncher = new AutoLaunch(autolaunchConfig);
+
+const disableAutolaunchLabel = "I'm awfull and i dont want to se sharkie again"
+const endableAutolaunchLabel = "I really love sharkie and I want it on my pc every time it starts"
+
+
 app.disableHardwareAcceleration();
 function createWindow () {
 
@@ -23,6 +36,7 @@ function createWindow () {
     frame:false,
     resizable:false,
     transparent:true,
+    focusable:false,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
@@ -76,18 +90,6 @@ const close = new MenuItem({
     app.quit()
   }
 })
-
-let  autolaunchConfig = {
-  name: "sharke-meter"
-}
-
-if(process.env.APPIMAGE){
-  autolaunchConfig = {...autolaunchConfig, path:process.env.APPIMAGE}
-}
-const autoLauncher = new AutoLaunch(autolaunchConfig);
-
-const disableAutolaunchLabel = "I'm awfull and i dont want to se sharkie again"
-const endableAutolaunchLabel = "I really love sharkie and I want it on my pc every time it starts"
 
 const autolaunchMenuItem = (isEnabled) => new MenuItem({
   label: isEnabled? disableAutolaunchLabel : endableAutolaunchLabel,
