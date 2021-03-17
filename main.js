@@ -77,9 +77,14 @@ const close = new MenuItem({
   }
 })
 
-const autoLauncher = new AutoLaunch({
-  name: "sharkie"
-});
+let  autolaunchConfig = {
+  name: "sharke-meter"
+}
+
+if(process.env.APPIMAGE){
+  autolaunchConfig = {...autolaunchConfig, path:process.env.APPIMAGE}
+}
+const autoLauncher = new AutoLaunch(autolaunchConfig);
 
 const disableAutolaunchLabel = "I'm awfull and i dont want to se sharkie again"
 const endableAutolaunchLabel = "I really love sharkie and I want it on my pc every time it starts"
