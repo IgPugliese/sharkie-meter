@@ -1,5 +1,5 @@
 {
-  "name": "sharke-meter",
+  "name": "sharkle-meter",
   "version": "0.0.1",
   "description": "Html visualizer",
   "main": "main.js",
@@ -8,7 +8,7 @@
     "dist": "electron-builder -mwl"
   },
   "build": {
-    "appId": "sharkie-meter"
+    "appId": "sharkle-meter"
   },
   "repository": {
     "type": "git",
