@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron . --enable-transparent-visuals",
-    "dist": "electron-builder"
+    "dist": "electron-builder -mwl"
   },
   "build": {
     "appId": "sharkie-meter"

@@ -36,7 +36,6 @@ function createWindow () {
     frame:false,
     resizable:false,
     transparent:true,
-    focusable:false,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
